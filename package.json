@@ -1,0 +1,22 @@
+{
+  "name": "@thrackle-io/contracts",
+  "version": "1.0.1",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarsernarosero/thrackle_npm.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "thrackle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oscarsernarosero/thrackle_npm/issues"
+  },
+  "homepage": "https://github.com/oscarsernarosero/thrackle_npm#readme"
+}
