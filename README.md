@@ -1,20 +1,16 @@
 # NPM Package
 
-## To upload package to the npm registry
+## Uploading Private Packages To The NPM Registry
 
-Before starting creating the package, here are some considerations:
+Before starting creating the package, we are assuming that the code is being hosted in a GitHub repository, and that the package has been finished and it's ready for production.
 
-### File organization in your repo
-
-If it is a contract-only package, then the repo should contain all the contracts on the top level of the directory for convenience of usage, although this is not strictly necessary. One could even create a whole hardhat project inside the repo and still be able to use the contracts although with more steps in between the paths when importing.
-
-Once the repo is ready to be a package, then in the top level of your package do
+Once the repo is ready for production, then in the root directory of your repo do
 
 1. `npm init --scope=@thrackle-io`
 
 2. Follow the promps, but **make sure to keep the `@thrackle-io/` piece of the name as it is** since this is the part responsible for indicating the private nature of the package and the organization it belongs to. You can change the right side of the name if you wish. For instance `@thrackle-io/contracts`. Alternatively, if you have already assigned a name to your package not following these guidelines, you can still change the name in the `package.json` file.
 
-3. Test your package locally on another project. For this, install the package using the local path to it:
+3. Test your package locally on another project. To do this, install the package using the local path to it like this:
 
    3.1. Go to your hardhat-testing project directory or create one:
 
@@ -34,17 +30,17 @@ Once the repo is ready to be a package, then in the top level of your package do
 
    ##### \*_Replace [ ~/MyPackages/thrackle] with your local package path_
 
-   3.3. Make sure your package works as expected by importing some contracts from the package and using them (You can inherit some contracts and try to use their functions or variables). Try `npx hardhat compile` to make sure the imports work.
+   3.3. Make sure your package works as expected by importing some contracts from the package and using them (You can inherit some contracts and try to use their functions or variables. see [Usage](#usage)). Try `npx hardhat compile` to make sure the imports work.
 
 4. Once your package has been tested locally, it is time to publish it:
 
-```
-npm publish
-```
+   ```
+   npm publish
+   ```
 
-Keep an eye on the terminal since you might have to do an `npm adduser` and/or do a 2FA verification if you have this feature enabled (recommended).
+   Keep an eye on the terminal since you might have to do an `npm adduser` and/or do a 2FA verification if you have this feature enabled (recommended).
 
-5. Visit https://npmjs.com/package/@thrackle-io/*name _replace name with your package name_ and make sure it says `private` bellow the package name. If it doesn't, revisit the step-2 guidelines.
+5. Visit https://npmjs.com/package/@thrackle-io/contracts _replace `contracts` with your package name_ and make sure it says `private` bellow the package name. If it doesn't, revisit the step-2 guidelines.
 
 ### Trouble shooting
 
@@ -62,6 +58,34 @@ npx hardhat
 ```
 
 2. simply press ENTER to all options, or select your own for more customization.
+
+## Usage
+
+1. Install the package in the project root directory that you want to use it. To install the package simply follow the steps on the npm web page, although it is as simple as `npm i <PACKAGE_NAME>`. In our example, it would be `npm i @thrackle-io/contracts`.
+
+2. Import the file with the contract you are interested in:
+
+   ```
+   import "@thrackle-io/contracts/Aprox.sol";
+   ```
+
+   or, if you want to be more specific...
+
+   ```
+   import {Aprox} from "@thrackle-io/contracts/Aprox.sol";
+   ```
+
+3. Then you can inherit the contracts or do whatever you need with them:
+
+   ```
+   import {Aprox} from "@thrackle-io/contracts/Aprox.sol";
+
+   contract UsingThracklePackage is Aprox{
+       ...
+   }
+   ```
+
+That's it!
 
 # Sample Hardhat Project
 
